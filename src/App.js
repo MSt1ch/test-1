@@ -28,11 +28,11 @@ class App extends Component {
   handleInputChange = (input) => {
     const {updateInputs} = this.props;
     updateInputs(input)
-  }
+  };
 
   handleToglePopup = (show) => {
     const {togglePopup} = this.props;
-    console.log(togglePopup)
+
     togglePopup(show)
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
 
     const {inputs, greeting, popup} = this.props;
-
+    console.log(popup);
     const inputsViews = inputs.map( (input) => {
       return (
         <Input  input={input} key={input.id} onChange={this.handleInputChange}/>
@@ -61,7 +61,7 @@ class App extends Component {
         <TextMirror value={greeting}></TextMirror>
         {inputsViews}
         <Button onClick={this.handleToglePopup}/>
-      {popup.show ? <Popup/> : null}
+      {popup.show ? <Popup /> : null}
       </div>
     );
   }

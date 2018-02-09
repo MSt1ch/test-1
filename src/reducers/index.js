@@ -29,9 +29,8 @@ export const reducer = (state = initialState, actions) => {
 
     switch(type) {
 
-      case types.UPDATE_INPUTS:
+      case types.UPDATE_INPUTS: {
         const updatedInputs = state.inputs.map( (item)=>{
-          console.log(item);
           if (item.id === input.id) {
             item.value = input.value;
           }
@@ -41,16 +40,18 @@ export const reducer = (state = initialState, actions) => {
           ...state,
           inputs: updatedInputs
         }
+      }
 
 
-
-      case types.SHOW_MODAL:
-        const toggledPopup = !state.popup.show;
-        console.log(state.popup.show);
+      case types.SHOW_MODAL: {
+        const toggledPopup = state.popup;
+        toggledPopup.show = !toggledPopup.show;
+        console.log(state);
         return {
           ...state,
           popup: toggledPopup
         }
+      }
 
       default:
         return state

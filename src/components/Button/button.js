@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 
 class Button extends Component {
 
-  handleChange = (popup) => {
-    return popup;
+  onClick = (e) => {
+    e.preventDefault();
+    const {onClick, show} = this.props;
+    console.log(show);
+    onClick(show)
   }
 
   render() {
@@ -17,7 +20,7 @@ class Button extends Component {
 				<input
 					className={classNames}
 					type= "submit"
-					onClick={this.handleChange}
+					onClick={this.onClick}
 				/>
 			</div>
 		);
