@@ -6,6 +6,7 @@ import Popup from './components/Popup';
 import TextMirror from './components/TextMirror';
 import {updateInputs} from './actions';
 import {togglePopup} from './actions';
+import {closePopup} from './actions';
 import './App.css';
 import {connect} from 'react-redux';
 
@@ -20,7 +21,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   updateInputs: bindActionCreators(updateInputs, dispatch),
-  togglePopup: bindActionCreators(togglePopup, dispatch)
+  togglePopup: bindActionCreators(togglePopup, dispatch),
+  closePopup: bindActionCreators(closePopup, dispatch)
 });
 
 class App extends Component {
@@ -34,8 +36,15 @@ class App extends Component {
     const {togglePopup} = this.props;
 
     togglePopup(show)
-  }
 
+  };
+
+  handlClosePopup = (hide) => {
+    const {closePopup} = this.props;
+
+    closePopup(hide)
+
+  };
 
   render() {
 
@@ -61,7 +70,7 @@ class App extends Component {
         <TextMirror value={greeting}></TextMirror>
         {inputsViews}
         <Button onClick={this.handleToglePopup}/>
-      {popup.show ? <Popup /> : null}
+      {popup.show ? <Popup onClick={this.handlClosePopup}/> : null}
       </div>
     );
   }

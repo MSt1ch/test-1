@@ -7,7 +7,8 @@ class Button extends Component {
     e.preventDefault();
     const {onClick, show} = this.props;
     console.log(show);
-    onClick(show)
+    onClick(show);
+
   }
 
   render() {

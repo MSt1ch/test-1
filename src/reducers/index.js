@@ -17,7 +17,7 @@ const initialState = {
       name: 'lasttname'
     }
   ],
-  greeting: 'Привет Стас'
+  greeting: 'Привет Стас!'
 };
 
 
@@ -30,26 +30,41 @@ export const reducer = (state = initialState, actions) => {
     switch(type) {
 
       case types.UPDATE_INPUTS: {
-        const updatedInputs = state.inputs.map( (item)=>{
+        var greeting = state.greeting;
+        const updatedInputs = state.inputs.map( (item, index)=>{
+
           if (item.id === input.id) {
             item.value = input.value;
+            if( index === 0) {
+              greeting = "Привет " + item.value + "!";
+            }
+
           }
           return item;
         })
         return {
           ...state,
-          inputs: updatedInputs
+          inputs: updatedInputs,
+          greeting: greeting
         }
       }
 
 
       case types.SHOW_MODAL: {
-        const toggledPopup = state.popup;
-        toggledPopup.show = !toggledPopup.show;
-        console.log(state);
         return {
           ...state,
-          popup: toggledPopup
+          popup: {
+            show: 1
+          }
+        }
+      }
+
+      case types.HIDE_MODAL: {
+        return {
+          ...state,
+          popup: {
+            show: 0
+          }
         }
       }
 
